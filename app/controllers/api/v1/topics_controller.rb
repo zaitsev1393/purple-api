@@ -1,4 +1,4 @@
-class TopicsController < ApplicationController
+class Api::V1::TopicsController < ApplicationController
   def index
   end
 
