@@ -5,4 +5,9 @@ class Topic < ApplicationRecord
 
   belongs_to :user
   has_many :comments
+
+  def comments_count
+  	comments.count
+  end
+
 end
