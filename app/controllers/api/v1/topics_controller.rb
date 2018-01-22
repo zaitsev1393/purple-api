@@ -17,12 +17,12 @@ class Api::V1::TopicsController < ApplicationController
 
   def create
   	@topic = Topic.create! topic_params
-  	if @topic.save!
-  	  json_response(@topic, :created)
-  	end
+  	json_response(@topic, :created)
   end
 
   def update
+    @topic.update_attributes! topic_params
+    json_response(@topic)
   end
 
   def destroy

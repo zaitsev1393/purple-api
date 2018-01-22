@@ -11,9 +11,18 @@ class Api::V1::CommentsController < ApplicationController
   	json_response(@topic)
   end
 
+  def create
+    @comment = Comment.create! comment_params
+    if @comment.save!
+      json_response(@comment, :created)
+    else
+      json_response(@comment.errors, :unprocessable_entity)
+    end
+  end
+
   def update
-    @topic.update_attributes! comment_params
-    json_response(@topic, :updated)
+    @comment.update_attributes! comment_params
+    json_response(@comment, :updated)
   end
 
   def destroy
@@ -24,7 +33,7 @@ class Api::V1::CommentsController < ApplicationController
 private
 
   def comment_params
-    params.permit(:text)
+    params.permit(:text, :user_id, :topic_id)
   end
 
   def set_comment
