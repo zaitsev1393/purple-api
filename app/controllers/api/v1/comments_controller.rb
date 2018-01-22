@@ -12,7 +12,8 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def update
-
+    @topic.update_attributes! comment_params
+    json_response(@topic, :updated)
   end
 
   def destroy
@@ -21,6 +22,10 @@ class Api::V1::CommentsController < ApplicationController
   end
 
 private
+
+  def comment_params
+    params.permit(:text)
+  end
 
   def set_comment
     @comment = Comment.find(params[:id])
