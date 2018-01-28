@@ -3,7 +3,7 @@ class Api::V1::TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :update, :destroy]
 
   def index
-  	@topics = Topic.all
+  	@topics = Topic.all.order('created_at desc')
   	json_response(@topics, :ok)
   end
 

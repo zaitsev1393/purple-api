@@ -1,5 +1,5 @@
 class TopicSerializer < ActiveModel::Serializer
-  attributes :id, :text, :comments_count
+  attributes :id, :title, :created_at, :text, :comments_count
 
   belongs_to :user
 end
